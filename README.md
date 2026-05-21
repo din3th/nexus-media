@@ -146,6 +146,31 @@ npm run dev:server   # http://localhost:5001
 }
 ```
 
+## Deploy frontend (Vercel)
+
+Repo: [github.com/din3th/nexus-media](https://github.com/din3th/nexus-media)
+
+1. Sign in at [vercel.com](https://vercel.com) and **Add New Project**.
+2. Import **din3th/nexus-media** from GitHub.
+3. Set **Root Directory** to `client` (Edit → Root Directory → `client`).
+4. Framework should auto-detect **Vite**. Defaults are fine:
+   - **Build Command:** `npm run build`
+   - **Output Directory:** `dist`
+   - **Install Command:** `npm install`
+5. **Environment variables** (Project → Settings → Environment Variables):
+
+   | Name | Value |
+   |------|--------|
+   | `VITE_API_URL` | Your deployed API URL including `/api`, e.g. `https://your-api.onrender.com/api` |
+
+   Leave unset only if the API is not live yet — the contact form will not work until this points to your backend.
+
+6. Deploy. Vercel will assign a URL like `https://nexus-media.vercel.app`.
+
+`client/vercel.json` rewrites all routes to `index.html` so React Router works on refresh.
+
+**Backend CORS:** When the API is hosted elsewhere, set `CLIENT_URL` in server `.env` to your Vercel URL (e.g. `https://nexus-media.vercel.app`).
+
 ## Production Build
 
 ```bash
