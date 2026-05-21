@@ -152,11 +152,11 @@ Repo: [github.com/din3th/nexus-media](https://github.com/din3th/nexus-media)
 
 1. Sign in at [vercel.com](https://vercel.com) and **Add New Project**.
 2. Import **din3th/nexus-media** from GitHub.
-3. Set **Root Directory** to `client` (Edit → Root Directory → `client`).
-4. Framework should auto-detect **Vite**. Defaults are fine:
+3. Leave **Root Directory** as `.` (repo root). The root `vercel.json` sets:
+   - **Output Directory:** `client/dist` (not `dist`)
    - **Build Command:** `npm run build`
-   - **Output Directory:** `dist`
-   - **Install Command:** `npm install`
+   - SPA rewrites for React Router
+4. **Alternative:** set Root Directory to `client` and use Output Directory `dist` (then root `vercel.json` is ignored).
 5. **Environment variables** (Project → Settings → Environment Variables):
 
    | Name | Value |
@@ -167,7 +167,7 @@ Repo: [github.com/din3th/nexus-media](https://github.com/din3th/nexus-media)
 
 6. Deploy. Vercel will assign a URL like `https://nexus-media.vercel.app`.
 
-`client/vercel.json` rewrites all routes to `index.html` so React Router works on refresh.
+Root `vercel.json` rewrites all routes to `index.html` so React Router works on refresh.
 
 **Backend CORS:** When the API is hosted elsewhere, set `CLIENT_URL` in server `.env` to your Vercel URL (e.g. `https://nexus-media.vercel.app`).
 
